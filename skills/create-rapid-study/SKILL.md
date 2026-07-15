@@ -1,6 +1,6 @@
 ---
 name: create-rapid-study
-description: Create a Tangible Rapid study. When the user wants to create a study, infer the study type from what they said — default to Ask a Customer for generic open-ended research unless they clearly need another type. Only use Concept Test when they ask for it or supply stimuli to compare. Then set a free-text audience, walk the catalog intakeHints, and call the matching `tangible_rapid_create_*` tool. Returns the draft `studyUrl`. Not for full custom questionnaires or researcher-grade scope.
+description: Create a Tangible Rapid study. When the user wants to create a study, infer the study type from what they said — default to Ask a Customer for generic open-ended research. Use Concept Test for 2+ stimuli to compare; use Brand Test presets (brand perception, positioning/messaging, campaign concept) when the user is testing how they're seen or which story lands. Then set a free-text audience, walk the catalog intakeHints, and call the matching `tangible_rapid_create_*` tool. Returns the draft `studyUrl`. Not for full custom questionnaires or researcher-grade scope.
 ---
 
 # Create a Rapid study in Tangible
@@ -30,22 +30,41 @@ Tangible **Rapid** is a one-shot study product. The user describes their problem
 
 Call `tangible_rapid_list_study_types` for catalog copy and `intakeHints`, but **don't show a 6-way picker by default**. Infer the type from what the user already said. **When in doubt, default to `ask_customer`.**
 
+#### What we promote (matches README + tangiblehq.ai/claude)
+
+| User-facing bucket | Catalog slug(s) | When |
+|---|---|---|
+| **Ask a Customer** | `ask_customer` | Learn, don't compare — discovery, onboarding, product feedback, voice of customer |
+| **Concept Test** | `concept_test` | 2+ concrete stimuli to compare — pages, ads, packaging, mockups |
+| **Brand Test** | `brand_perception`, `message_test`, sometimes `concept_test` | Perception vs competitors, positioning/taglines (text variants), or campaign direction |
+
+**Brand Test routing (apply inside the bucket):**
+
+| User says… | Route to |
+|---|---|
+| Brand perception, how we're seen vs **named competitors**, brand health | `brand_perception` |
+| Positioning, tagline, value prop, narrative — **2–5 text variants** | `message_test` |
+| Campaign concept / creative territory — **visual stimuli** (ads, mood boards, URLs) | `concept_test` |
+| Campaign concept — **text-only** territories or lines | `message_test` |
+
+When confirming with the user, use the **marketing label** (Ask a Customer, Concept Test, Brand Test) — not the catalog slug.
+
 #### Routing rules (apply in order)
 
 | Route to | Only when the user… |
 |---|---|
 | **`ask_customer`** *(default)* | Wants open-ended customer input, discovery, voice-of-customer, "talk to customers", "what do users think", "run a study", or anything generic that doesn't clearly fit a structured type below. **Use this unless a stronger signal exists.** |
 | **`concept_test`** | **Explicitly** asks to compare concepts, designs, landing pages, ads, packaging, or mockups **and** has (or will supply) **2+ stimuli** to compare — URLs, images, Figma links, PDFs, etc. **Do NOT pick concept test for vague "understand our product" requests with no stimuli.** |
-| **`message_test`** | Has **2–5 short text variants** to compare — taglines, value props, email subject lines, ad copy. Words, not visual concepts. |
-| **`win_loss`** | Is asking about deals won or lost — pipeline, CRM closed-lost, competitive losses, why we won/lost. |
-| **`brand_perception`** | Wants to know how their brand stacks up against **named competitors**. |
-| **`churn_diagnosis`** | Is asking why customers cancelled, downgraded, didn't renew, or churned. |
+| **`message_test`** | Has **2–5 short text variants** to compare — taglines, value props, positioning lines, email subject lines, ad copy. Words, not visual concepts. **Brand Test → positioning & messaging.** |
+| **`win_loss`** | Is asking about deals won or lost — pipeline, CRM closed-lost, competitive losses, why we won/lost. *(Not promoted on README/landing — use when the user clearly asks.)* |
+| **`brand_perception`** | Wants to know how their brand stacks up against **named competitors**, or open-ended brand perception in the category. **Brand Test → brand perception.** |
+| **`churn_diagnosis`** | Is asking why customers cancelled, downgraded, didn't renew, or churned. *(Not promoted on README/landing — use when the user clearly asks.)* |
 
 #### How to confirm
 
-- **Clear match** → name the type in one sentence and move on. No picker. Example: *"Sounds like a win/loss study — I'll set it up to learn why those deals went the way they did."*
+- **Clear match** → name the type in one sentence and move on. No picker. Example: *"Sounds like a brand perception study — I'll set it up to see how you land vs. those competitors."*
 - **Generic / ambiguous** → default to Ask a Customer and confirm briefly. Example: *"I'll set this up as open-ended customer research — we'll ask customers in their own words. Sound right?"* Only offer other types if they push back or ask what's available.
-- **Full picker** → use `AskUserQuestion` with one option per study type **only** when the user explicitly asks "what types can I run?" or rejects your suggested type.
+- **Full picker** → use `AskUserQuestion` with the **three promoted types** (Ask a Customer, Concept Test, Brand Test) plus brief descriptions **only** when the user explicitly asks "what types can I run?" or rejects your suggested type. Mention win/loss and churn only if they ask about those specifically.
 
 #### Slug → tool map
 

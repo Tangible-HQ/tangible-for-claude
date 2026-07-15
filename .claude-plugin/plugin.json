@@ -1,7 +1,7 @@
 {
   "name": "tangible-for-claude",
   "displayName": "Tangible for Claude",
-  "description": "Customer research from Claude. Ask a Customer for open-ended voice-of-customer listening; Concept Test to compare landing pages, ads, and designs. Tangible drafts in ~3 minutes and recruits respondents in 24-72 hours.",
+  "description": "Customer research from Claude. Ask a Customer, Concept Test, and Brand Test — voice-of-customer listening, compare landing pages and designs, test brand perception and positioning. Tangible drafts in ~3 minutes and recruits respondents in 24-72 hours.",
   "version": "0.3.0",
   "author": {
     "name": "Tangible",
@@ -18,6 +18,9 @@
     "concept-testing",
     "voice-of-customer",
     "ask-a-customer",
-    "customer-research"
+    "customer-research",
+    "brand-testing",
+    "brand-perception",
+    "positioning"
   ]
 }

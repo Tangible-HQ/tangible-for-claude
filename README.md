@@ -6,10 +6,13 @@ Tangible helps founders and product leaders run custom research from a normal Cl
 
 No research background required. No spreadsheets. No survey software to learn.
 
-Tangible supports two kinds of research through Claude today:
+Tangible supports three kinds of research through Claude today — **built for founders and product leaders first**, with brand and marketing use cases on the same connector:
 
 1. **Ask a Customer** — open-ended listening. Hear what customers think, need, and struggle with in their own words.
 2. **Concept Test** — structured comparison. See which landing page, ad, design, or mockup wins when you have 2+ options to show people.
+3. **Brand Test** — perception and positioning. See how you're perceived, which story lands, or whether a campaign direction is worth the spend.
+
+**Install guide (with examples):** [tangiblehq.ai/claude](https://tangiblehq.ai/claude)
 
 ---
 
@@ -33,7 +36,7 @@ Tangible is built for **decisions you can't make from gut feel alone** — when 
 
 **What Tangible does:** drafts the study, **recruits a matched audience** (you don't need your own customer list), collects responses, and generates a report.
 
-**What you get back:** themes in customers' own words — and for concept tests, a clear read on which option wins.
+**What you get back:** themes in customers' own words — for concept tests, which option wins — and for brand studies, how you're perceived and which narrative resonates.
 
 **Typical timeline:**
 
@@ -53,7 +56,7 @@ Tangible is built for **decisions you can't make from gut feel alone** — when 
 
 ---
 
-## The two ways to use Tangible
+## The three ways to use Tangible
 
 ### 1. Ask a Customer — listen before you decide
 
@@ -169,6 +172,49 @@ Compare UI mockups, feature concepts, product descriptions, or prototype flows w
 
 ---
 
+### 3. Brand Test — perception, positioning, and campaign direction
+
+Use this when you need to understand **how you're seen** or **which story to tell** — especially for brand and marketing teams testing perception, positioning, or campaign ideas before budget goes out.
+
+Claude routes these to the right study shape automatically. Three common starting points:
+
+#### Brand perception
+*See how buyers describe you vs. competitors.*
+
+Best when you need associations, trust, category fit, or a read on brand health before a repositioning bet or fundraise.
+
+| | |
+|---|---|
+| **Who to talk to** | Buyers or customers in your category who know you and named competitors |
+| **What you'll learn** | Awareness, associations, sentiment, how you stack up vs. alternatives |
+| **Example prompt** | *"How does our brand land vs. Competitor X among marketing leaders in mid-market SaaS?"* |
+
+#### Positioning & messaging
+*Test which narrative, tagline, or value prop resonates.*
+
+Best when you have 2–5 text directions to compare — taglines, value props, positioning lines — before you ship copy.
+
+| | |
+|---|---|
+| **What to bring** | 2–5 short text variants (taglines, headlines, positioning statements) |
+| **What you'll learn** | Which message feels most credible, distinctive, or relevant — and why |
+| **Example prompt** | *"Compare these three positioning lines with our ICP — which feels most credible?"* |
+
+#### Campaign concept
+*Validate a campaign idea or creative territory before media spend.*
+
+Best when you want a directional read on a campaign direction — with creative to show, or as an open-ended perception study.
+
+| | |
+|---|---|
+| **What to bring** | Campaign mockups, creative URLs, or a plain-English description of the territory |
+| **What you'll learn** | Whether the direction feels distinctive, on-brand, and worth investing in |
+| **Example prompt** | *"Which campaign direction feels most distinctive in our category before we put budget behind it?"* |
+
+**How it works:** you describe the brand question and audience. Tangible drafts the study, **recruits respondents**, and returns themes and quotes — plus a clear read on which message or direction wins when you're comparing options.
+
+---
+
 ## How to talk to customers (and actually learn)
 
 ### Start with a decision, not a survey
@@ -188,6 +234,12 @@ Examples that fit **Concept Test:**
 
 - *"If I knew which homepage made our value prop clearer, I would ship that one."* → **Landing page**
 - *"If I knew which ad concept felt more trustworthy, I would put budget behind it."* → **Ad / campaign creative**
+
+Examples that fit **Brand Test:**
+
+- *"If I knew how buyers describe us vs. Competitor X, I would fix our positioning."* → **Brand perception**
+- *"If I knew which tagline felt most credible, I would update the homepage."* → **Positioning & messaging**
+- *"If I knew which campaign territory was worth the spend, I would brief the agency."* → **Campaign concept**
 
 Tell Claude that sentence. It picks the right study type.
 
@@ -225,6 +277,9 @@ Look for **repeated themes** and **strong quotes**. Tangible redacts personal de
 | *"Hear how customers describe us vs alternatives"* | **Ask a Customer** — Voice of customer |
 | *"Which of these two landing pages is clearer?"* + links | **Concept Test** — Landing page |
 | *"Compare these three ad concepts"* + images | **Concept Test** — Ad / campaign creative |
+| *"How does our brand land vs. Competitor X?"* | **Brand Test** — Brand perception |
+| *"Compare these three positioning lines"* | **Brand Test** — Positioning & messaging |
+| *"Which campaign direction feels most distinctive?"* | **Brand Test** — Campaign concept |
 | *"Show me my studies"* / *"what's running?"* | Lists your studies and where each one stands. |
 | *"What did we learn?"* | Reads your results — themes, quotes, and (for concept tests) the winner. |
 | *"Tighten the audience to mid-market only"* | Updates a draft or live study in plain English. |
@@ -234,11 +289,11 @@ Look for **repeated themes** and **strong quotes**. Tangible redacts personal de
 ## Good to know
 
 - **Tangible recruits the audience for you** — describe who you want; matched respondents participate through Tangible's panel. You don't need your own email list.
-- **Ask a Customer is the default** for open-ended questions. Concept Test is for when you have specific options to compare.
+- **Ask a Customer is the default** for open-ended questions. Concept Test is for 2+ concrete options to compare. Brand Test covers perception, positioning, and campaign direction — Claude picks the right study shape.
 - **Launch happens in the Tangible app** — Claude helps you draft and refine; you always review cost and confirm launch in your browser.
 - **Pricing is transparent** — you see the line item on the review page before anything goes live.
 - **Your customer data stays yours** — personal details are removed before results come back into Claude.
-- **Best fit:** founders and PMs who need to listen to customers or pick between concrete concepts fast.
+- **Best fit:** founders and PMs who need customer signal fast; brand and marketing teams use the same connector for perception and positioning studies.
 
 ---
 
@@ -268,4 +323,5 @@ Most teams start on **claude.ai** with the connector at the top of this README.
 ## Links
 
 - Website: [tangiblehq.ai](https://tangiblehq.ai)
+- Claude install guide: [tangiblehq.ai/claude](https://tangiblehq.ai/claude)
 - Questions & support: [team@tangiblehq.ai](mailto:team@tangiblehq.ai)
