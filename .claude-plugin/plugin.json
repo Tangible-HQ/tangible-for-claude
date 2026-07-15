@@ -1,0 +1,25 @@
+{
+  "name": "tangible-for-claude",
+  "displayName": "Tangible for Claude",
+  "description": "Quick custom research via the Tangible Rapid platform. Six study types: win/loss, message test, concept test, brand perception, churn diagnosis, ask a customer. Drafts in ~3 minutes; respondents recruited in 24-72 hours. Not for full custom questionnaires or researcher-grade scope.",
+  "version": "0.3.0",
+  "author": {
+    "name": "Tangible",
+    "email": "engineering@tangiblehq.ai"
+  },
+  "homepage": "https://tangiblehq.ai/claude",
+  "repository": "https://github.com/Tangible-HQ/tangible-for-claude",
+  "license": "MIT",
+  "keywords": [
+    "tangible",
+    "research",
+    "mcp",
+    "studies",
+    "win-loss",
+    "message-testing",
+    "concept-testing",
+    "churn-diagnosis",
+    "brand-perception",
+    "voice-of-customer"
+  ]
+}
