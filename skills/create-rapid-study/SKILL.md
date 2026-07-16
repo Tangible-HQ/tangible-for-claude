@@ -145,17 +145,24 @@ Before anyone launches, show the user what was drafted. Call `tangible_rapid_get
 
 Then ask if it looks right. If they want changes, hand to the `update-rapid-study` skill. **Use `get_study_overview` for this — never `get_projects`** (see tone rules): describe *what the study asks*, never its internal structure or how it was generated.
 
-### Step 6b — Ask a Customer: offer both delivery links (and a preview)
+### Step 6b — Ask a Customer: pick the delivery, share the preview (live links come after launch)
 
-An **Ask a Customer** study can run two ways off the same draft: a quick **survey** or a short **AI voice interview**. Once the draft is ready, call `tangible_get_project_urls(projectId)` — it returns `interviewUrl` (the AI interview) and `participantUrl` (the survey) — and offer both:
+An **Ask a Customer** study can run two ways off the same draft: a quick **survey** or a short **AI voice interview**. Once the draft is ready, ask which they want:
 
 > "Your study's ready. You can send customers a short **AI voice interview** or a quick **survey** — same questions either way. The interview is the natural fit for hearing them in their own words. Which do you want to use?"
 
-Use `AskUserQuestion` with two options — **AI interview** and **Survey**. Share the link they pick (`interviewUrl` or `participantUrl`) as the one to send; mention the other is available too if they want both. Refer to them as "the interview link" and "the survey link" — never as `/i/` or `/s/` or "URLs".
+Use `AskUserQuestion` with two options — **AI interview** and **Survey**.
 
-**Offer a test-drive.** The same `get_project_urls` call returns `interviewPreviewUrl` — an owner-only link to walk the AI interview themselves *before* launching (a draft's live link isn't open to respondents yet). Offer it: "Want to try the interview yourself first? Here's a private preview." (A draft **survey** has no preview link — to test one, point them to the design page, `studyUrl`.)
+**Do NOT share the live links at draft stage.** `tangible_get_project_urls(projectId)` returns `interviewUrl` (the AI interview) and `participantUrl` (the survey), but **neither accepts respondents while the study is a draft** — they only start working after the user clicks "Launch Study" in the Tangible UI. Sharing them now hands the user dead links.
 
-This two-link choice is **only for `ask_customer`.** For the other five types, the survey (`participantUrl`) is the delivery — don't offer an interview link.
+What to share while the study is still a draft:
+
+- **AI interview** picked → share `interviewPreviewUrl`, an owner-only walk-through of the draft interview: "Want to try the interview yourself first? Here's a private preview."
+- **Survey** picked → there's no survey preview link; point them to the design page (`studyUrl`) to review and test it.
+
+Share the live link they picked (`interviewUrl` or `participantUrl`) **after launch** — or alongside the Step 7 launch hand-off, clearly labeled: "this is the link you'll send customers; it goes live once you click Launch Study." Refer to them as "the interview link" and "the survey link" — never as `/i/` or `/s/` or "URLs".
+
+This two-link choice is **only for `ask_customer`.** For the other five types, the survey (`participantUrl`) is the delivery — don't offer an interview link, and the same rule applies: it only works after launch, so don't present it as sendable before then.
 
 ### Step 7 — Hand off to launch (when asked)
 
