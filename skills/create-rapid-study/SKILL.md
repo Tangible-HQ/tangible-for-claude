@@ -119,8 +119,17 @@ Other rules:
 - For `decisionContext` (required by message / concept / brand_perception), infer first from brand + the messages/concepts/competitors + the audience. Only ask in chat if you genuinely can't infer — short single question, no `AskUserQuestion` since the answer is free text.
 - For concept tests, infer `ConceptStimulus.type` from URL shape (Figma → `website`, .png/.jpg → `image`, .mp4 → `video`, .pdf → `pdf`, plain page → `website`). Only ask if genuinely ambiguous. Accept any fetchable URL; don't tell users "public S3 only".
 - Sample size defaults to 100 — only ask if the user wants to override.
-- **`ask_customer` is light — don't walk a long intake.** This is open-ended voice-of-customer, not a structured study. Only the **goal** (what they want to hear, in their own words) and the **audience** really matter. Take the goal verbatim or infer it; brand / category are optional (infer or skip); there are no variants, competitors, or outcome fields. Sample size defaults to **20** here, not 100. Call `tangible_rapid_create_ask_customer_study(studyId, goal?, brandName?, extraContext?)` and move on.
-- **Bring-your-own questionnaire (`ask_customer` only).** If the user already has a questionnaire (pasted text or a txt/md file they've shared), don't rewrite it — pass its full plain text as `providedQuestionnaire` with `questionnaireIntent="verbatim"` (and the filename as `questionnaireSourceName` if there is one). Their questions are then asked **word-for-word**; the platform only wraps consent, screening, and demographics around them. Confirm with the user first that they want it used as-is — that's what `"verbatim"` asserts. Limits: plain text only (no pdf/docx), max 20,000 characters; `"inspiration"` intent isn't supported yet, so if they only want it as a starting point, fold its themes into `goal` / `extraContext` instead.
+- **`ask_customer` is light — don't walk a long intake.** This is open-ended voice-of-customer, not a structured study. Only the **goal** and the **audience** really matter. Brand / category are optional (infer or skip); there are no variants, competitors, or outcome fields. Sample size defaults to **20** here, not 100.
+- **Ask the goal question as three explicit paths, not one.** Once the audience is set, ask:
+
+  > "What do you want to learn — in your own words? Or if you already have a study guide or discussion guide, share the text and we'll use it word-for-word."
+
+  Offer all three, don't wait for the user to volunteer the third one:
+  1. **Describe it in your own words** → pass as `goal`.
+  2. **Skip it** → omit `goal`; a sensible default is used.
+  3. **Already have a study guide** (pasted text or a txt/md file they've shared) → don't rewrite it, pass its full plain text as `providedQuestionnaire` with `questionnaireIntent="verbatim"` (and the filename as `questionnaireSourceName` if there is one). Their questions are then asked **word-for-word**; the platform only wraps consent, screening, and demographics around them. Confirm with the user first that they want it used as-is — that's what `"verbatim"` asserts. Limits: plain text only (no pdf/docx), max 20,000 characters; `"inspiration"` intent isn't supported yet, so if they only want the guide as a starting point rather than verbatim, fold its themes into `goal` / `extraContext` instead (path 1).
+
+  Call `tangible_rapid_create_ask_customer_study(studyId, goal?, brandName?, extraContext?, providedQuestionnaire?, questionnaireIntent?, questionnaireSourceName?)` and move on.
 
 ### Step 5 — Create the study
 
